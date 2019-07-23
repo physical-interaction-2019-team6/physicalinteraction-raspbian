@@ -1,5 +1,12 @@
 # physicalinteraction-raspbian
 
+## Flow
+
+マイク拾う
+予測
+振動
+
+
 ## Usage
 
 WIP
