@@ -1,5 +1,9 @@
+from vibrator import Vibrator
+
+
 def main():
-    print("Hello")
+    vibrator = Vibrator()
+    vibrator.vibrate()
 
 
 if __name__ == "__main__":
