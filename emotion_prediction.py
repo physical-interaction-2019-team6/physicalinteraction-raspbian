@@ -22,8 +22,12 @@ class EmotionPrediction:
     def predict(self, buffers, sample_rate):
         cropped_buffers = voice_preprocess.crop(buffers, sample_rate)
 
+        if len(cropped_buffers) < 1:
+            return 0
+
         periodograms = []
         for cropped_buffer in tqdm(cropped_buffers):
             periodograms.append(voice_preprocess.create_periodogram(cropped_buffer))
 
-        return np.concatenate(periodograms)
+        test_data = np.concatenate(periodograms)
+        # TODO

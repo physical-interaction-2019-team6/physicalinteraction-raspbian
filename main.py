@@ -7,7 +7,7 @@ from recorder import Recorder
 def main():
     recorder = Recorder()
     recorder.start()
-    sleep(1)
+    sleep(3)
     buf, rate = recorder.get_as_numpy_array()
     recorder.stop()
 
