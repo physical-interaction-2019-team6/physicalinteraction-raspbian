@@ -1,9 +1,14 @@
-from vibrator import Vibrator
+from time import sleep
+
+from communication import Communication
 
 
 def main():
-    vibrator = Vibrator()
-    vibrator.vibrate()
+    com = Communication()
+    while True:
+        com.send("Hello")
+        print(com.receive())
+        sleep(1)
 
 
 if __name__ == "__main__":
