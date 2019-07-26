@@ -1,3 +1,6 @@
+import threading
+import time
+
 import bluetooth
 
 IS_CLIENT = 1
@@ -18,13 +21,26 @@ class Communication:
             self.sock = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
             self.sock.connect((TARGET_BLUETOOTH_MAC_ADDRESS, PORT))
 
+        # start receive thread
+        self.receive_data = ""
+
+        def receive_loop():
+            while True:
+                time.sleep(0.5)
+                self.receive_data = self.sock.recv(1024)
+
+        self.thread_receive = threading.Thread(target=receive_loop)
+        self.thread_receive.start()
+
     def send(self, data):
         self.sock.send(str(data))
 
     def receive(self):
-        return self.sock.recv(1024)
+        return self.receive_data
 
     def close(self):
+        self.thread_receive.join()
+
         self.sock.close()
         if IS_CLIENT:
             self.server_sock.close()
