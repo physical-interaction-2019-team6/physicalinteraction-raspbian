@@ -1,15 +1,21 @@
 from time import sleep
 
-from Recorder import Recorder
+from emotion_prediction import EmotionPrediction
+from recorder import Recorder
 
 
 def main():
     recorder = Recorder()
     recorder.start()
-    sleep(5)
-    recorder.save()
+    sleep(1)
+    buf, rate = recorder.get_as_numpy_array()
     recorder.stop()
 
+    m = EmotionPrediction()
+
+    m.predict(buf, rate)
+
+    print(buf.shape)
     # vibrator = Vibrator()
     # vibrator.vibrate()
 

@@ -1,6 +1,7 @@
 import copy
 import wave
 
+import numpy as np
 import pyaudio
 
 WAVE_FILE = "audio.wav"
@@ -57,3 +58,11 @@ class Recorder:
         wf.setframerate(RATE)
         wf.writeframes(b''.join(_frames))
         wf.close()
+
+    def get_as_numpy_array(self):
+        _frames = copy.copy(self.frames)
+        self.frames.clear()
+
+        np_frames = np.frombuffer(b''.join(_frames), dtype="int16")
+
+        return np_frames, RATE
