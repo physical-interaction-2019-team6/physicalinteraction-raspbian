@@ -1,9 +1,17 @@
-from vibrator import Vibrator
+from time import sleep
+
+from Recorder import Recorder
 
 
 def main():
-    vibrator = Vibrator()
-    vibrator.vibrate()
+    recorder = Recorder()
+    recorder.start()
+    sleep(5)
+    recorder.save()
+    recorder.stop()
+
+    # vibrator = Vibrator()
+    # vibrator.vibrate()
 
 
 if __name__ == "__main__":
