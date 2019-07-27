@@ -2,15 +2,15 @@ import threading
 import time
 
 import bluetooth
-import main
 
+IS_SERVER = 1
 TARGET_BLUETOOTH_MAC_ADDRESS = "B8:27:EB:A8:D1:0A"
 PORT = 1
 
 
 class Communication:
     def __init__(self):
-        if main.IS_SERVER:
+        if IS_SERVER:
             self.sock = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
             self.sock.connect((TARGET_BLUETOOTH_MAC_ADDRESS, PORT))
         else:
@@ -46,5 +46,5 @@ class Communication:
 
     def close(self):
         self.sock.close()
-        if not main.IS_SERVER:
+        if not IS_SERVER:
             self.server_sock.close()

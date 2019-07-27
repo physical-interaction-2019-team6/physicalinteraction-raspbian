@@ -1,11 +1,9 @@
 import time
+import communication
 
-from communication import Communication
 from emotion_prediction import EmotionPrediction
 from recorder import Recorder
 from vibrator import Vibrator
-
-IS_SERVER = 0
 
 
 def main():
@@ -15,7 +13,7 @@ def main():
     prediction = EmotionPrediction()
     prediction.load_model()
 
-    com = Communication()
+    com = communication.Communication()
 
     recorder.start()
     try:
@@ -25,7 +23,7 @@ def main():
 
             is_happy = prediction.predict(buf, rate)
 
-            if IS_SERVER:
+            if communication.IS_SERVER:
                 is_target_happy = int(com.receive())
 
                 print("is_happy: " + str(is_happy) + ", is_target_happy: " + str(is_target_happy))
