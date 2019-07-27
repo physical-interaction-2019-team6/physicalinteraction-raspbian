@@ -25,7 +25,7 @@ def main():
 
         is_target_happy = int(com.receive())
 
-        print("is_happy: " + is_happy + "is_target_happy: " + is_target_happy)
+        print("is_happy: " + str(is_happy) + "is_target_happy: " + str(is_target_happy))
 
         if is_happy and is_target_happy:
             vibrator.vibrate()
