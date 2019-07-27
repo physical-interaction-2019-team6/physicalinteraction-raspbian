@@ -3,8 +3,8 @@ import time
 
 import bluetooth
 
-IS_CLIENT = 1
-TARGET_BLUETOOTH_MAC_ADDRESS = ""
+IS_CLIENT = 0
+TARGET_BLUETOOTH_MAC_ADDRESS = "B8:27:EB:A8:D1:0A"
 PORT = 1
 
 
