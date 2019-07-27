@@ -22,7 +22,7 @@ class Communication:
             self.sock.connect((TARGET_BLUETOOTH_MAC_ADDRESS, PORT))
 
         # start receive thread
-        self.receive_data = 0
+        self.receive_data = "0"
 
         def receive_loop():
             while True:
@@ -34,7 +34,7 @@ class Communication:
         self.thread_receive.start()
 
     def send(self, data):
-        self.sock.send(data)
+        self.sock.send(str(data))
 
     def receive(self):
         return self.receive_data

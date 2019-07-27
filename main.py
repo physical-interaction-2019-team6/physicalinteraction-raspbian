@@ -23,7 +23,7 @@ def main():
         is_happy = prediction.predict(buf, rate)
         com.send(is_happy)
 
-        is_target_happy = com.receive()
+        is_target_happy = int(com.receive())
 
         print("is_happy: " + is_happy + "is_target_happy: " + is_target_happy)
 
