@@ -30,6 +30,7 @@ class Communication:
                 self.receive_data = self.sock.recv(1024)
 
         self.thread_receive = threading.Thread(target=receive_loop)
+        self.thread_receive.setDaemon(True)
         self.thread_receive.start()
 
     def send(self, data):
@@ -39,8 +40,6 @@ class Communication:
         return self.receive_data
 
     def close(self):
-        self.thread_receive.join()
-
         self.sock.close()
         if IS_CLIENT:
             self.server_sock.close()
