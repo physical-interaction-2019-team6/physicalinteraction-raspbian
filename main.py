@@ -9,6 +9,7 @@ def main():
     recorder.start()
 
     prediction = EmotionPrediction()
+    prediction.load_model()
 
     while True:
         sleep(1)
