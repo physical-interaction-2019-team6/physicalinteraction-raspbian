@@ -17,18 +17,19 @@ def main():
 
     recorder.start()
     try:
-        time.sleep(1)
-        buf, rate = recorder.get_as_numpy_array()
+        while True:
+            time.sleep(1)
+            buf, rate = recorder.get_as_numpy_array()
 
-        is_happy = prediction.predict(buf, rate)
-        com.send(is_happy)
+            is_happy = prediction.predict(buf, rate)
+            com.send(is_happy)
 
-        is_target_happy = int(com.receive())
+            is_target_happy = int(com.receive())
 
-        print("is_happy: " + str(is_happy) + "is_target_happy: " + str(is_target_happy))
+            print("is_happy: " + str(is_happy) + "is_target_happy: " + str(is_target_happy))
 
-        if is_happy and is_target_happy:
-            vibrator.vibrate()
+            if is_happy and is_target_happy:
+                vibrator.vibrate()
     except KeyboardInterrupt:
         pass
 
