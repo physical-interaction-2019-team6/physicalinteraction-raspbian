@@ -2,7 +2,6 @@ import numpy as np
 from keras import losses, optimizers
 from keras.models import model_from_json
 from tqdm import tqdm
-import matplotlib.pyplot as plt
 
 import voice_preprocess
 
@@ -30,11 +29,14 @@ class EmotionPrediction:
         for cropped_buffer in tqdm(cropped_buffers):
             periodograms.append(voice_preprocess.create_periodogram(cropped_buffer))
 
-        X_test = np.reshape(periodograms,(len(periodograms),28,28,1))
-
-        X_test = X_test / 127
+        test_data = np.reshape(periodograms, (len(periodograms), 28, 28, 1)) / 127
 
         # Evaluation
-        result = self.model.predict(X_test, X_test.shape[0], 1)
+        results = self.model.predict(test_data, test_data.shape[0], 1)
 
-        return result
+        ave = np.average(results, 0)
+
+        if ave[0] > ave[1]:
+            return 0
+        else:
+            return 1
