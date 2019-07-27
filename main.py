@@ -28,13 +28,13 @@ def main():
 
                 print("is_happy: " + str(is_happy) + ", is_target_happy: " + str(is_target_happy))
 
-                is_vibrate = int(is_happy and is_target_happy)
+                is_vibrate = int(is_happy == 1 and is_target_happy == 1)
                 com.send(is_vibrate)
             else:
                 is_vibrate = com.receive()
                 com.send(is_happy)
 
-            if is_vibrate:
+            if is_vibrate == 1:
                 vibrator.vibrate()
     except KeyboardInterrupt:
         pass

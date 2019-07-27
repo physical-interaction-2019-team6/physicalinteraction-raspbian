@@ -42,7 +42,7 @@ class Communication:
     def receive(self):
         data = self.receive_data
         self.receive_data = "0"
-        return data
+        return int(data)
 
     def close(self):
         self.sock.close()
