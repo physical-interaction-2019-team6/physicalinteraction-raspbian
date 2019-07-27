@@ -1,7 +1,5 @@
 from time import sleep
 
-from communication import Communication
-
 
 def main():
     com = Communication()
