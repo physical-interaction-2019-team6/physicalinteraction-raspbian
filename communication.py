@@ -33,6 +33,7 @@ class Communication:
                     self.receive_data = data
 
                     if not IS_SERVER and data == "1":
+                        self.receive_data = "0"
                         vibrator.vibrate()
 
         self.thread_receive = threading.Thread(target=receive_loop)
