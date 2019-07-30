@@ -1,6 +1,6 @@
 import time
-import communication
 
+import communication
 from emotion_prediction import EmotionPrediction
 from recorder import Recorder
 from vibrator import Vibrator
@@ -13,7 +13,7 @@ def main():
     prediction = EmotionPrediction()
     prediction.load_model()
 
-    com = communication.Communication()
+    com = communication.Communication(vibrator)
 
     recorder.start()
     try:
@@ -30,12 +30,11 @@ def main():
 
                 is_vibrate = int(is_happy == 1 and is_target_happy == 1)
                 com.send(is_vibrate)
-            else:
-                is_vibrate = com.receive()
-                com.send(is_happy)
 
-            if is_vibrate == 1:
-                vibrator.vibrate()
+                if is_vibrate:
+                    vibrator.vibrate()
+            else:
+                com.send(is_happy)
     except KeyboardInterrupt:
         pass
 

@@ -9,7 +9,7 @@ PORT = 1
 
 
 class Communication:
-    def __init__(self):
+    def __init__(self, vibrator):
         if IS_SERVER:
             self.sock = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
             self.sock.connect((TARGET_BLUETOOTH_MAC_ADDRESS, PORT))
@@ -26,11 +26,14 @@ class Communication:
 
         def receive_loop():
             while True:
-                time.sleep(0.1)
+                time.sleep(0.05)
                 data = self.sock.recv(1024)
 
                 if self.receive_data == "0":
                     self.receive_data = data
+
+                    if not IS_SERVER:
+                        vibrator.vibrate()
 
         self.thread_receive = threading.Thread(target=receive_loop)
         self.thread_receive.setDaemon(True)
