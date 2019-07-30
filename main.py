@@ -18,7 +18,7 @@ def main():
     recorder.start()
     try:
         while True:
-            time.sleep(0.5)
+            time.sleep(1)
             buf, rate = recorder.get_as_numpy_array()
 
             is_happy = prediction.predict(buf, rate)
