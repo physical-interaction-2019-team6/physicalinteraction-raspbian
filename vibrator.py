@@ -16,8 +16,8 @@ class Vibrator:
     def vibrate(self):
         print("vibrate")
         GPIO.output(self.pinMotorA, GPIO.HIGH)
-        sleep(0.1)
+        sleep(0.08)
         GPIO.output(self.pinMotorA, GPIO.LOW)
         GPIO.output(self.pinMotorB, GPIO.HIGH)
-        sleep(0.1)
+        sleep(0.08)
         GPIO.output(self.pinMotorB, GPIO.LOW)

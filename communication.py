@@ -26,7 +26,7 @@ class Communication:
 
         def receive_loop():
             while True:
-                time.sleep(0.5)
+                time.sleep(0.1)
                 data = self.sock.recv(1024)
 
                 if self.receive_data == "0":
